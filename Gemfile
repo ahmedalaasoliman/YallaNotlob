@@ -45,7 +45,11 @@ group :development do
   gem 'spring'
   
   gem 'devise'
-
+  gem 'omniauth'
+  gem 'omniauth-twitter'
+  #gem 'omniauth-facebook'
+  #gem 'omniauth-linkedin'
+  
   gem 'bootstrap-sass'
 
 end

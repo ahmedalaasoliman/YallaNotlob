@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :items
   resources :orders
-  devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  root 'orders#index'
+
+  
+    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
