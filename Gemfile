@@ -49,7 +49,8 @@ group :development do
   gem 'omniauth-twitter'
   #gem 'omniauth-facebook'
   #gem 'omniauth-linkedin'
-  
+  gem 'paperclip' #, '~> 4.1'
+
   gem 'bootstrap-sass'
 
 end
