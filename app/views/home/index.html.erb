@@ -1,24 +1,36 @@
 
-inside home index
+<div class="col-sm-1"></div>
+<div class="col-sm-5">
+      <h2>Latest Orders</h2>
+      <table class="table  "  >
+        <tbody>
 
-<table border="1">
-	<%= @order.each do |order| %>
-	<tr> 
-		<td> <%= order.order_for %> </td>
-		<td> <%= order.order_from %> </td>
-		<td> <%= order.created_at %> </td>
+        <% @order.each do |order| %>
 
-	 </tr>
-	 <% end %>
-</table>
+            <tr class="striped" >
+              <td class="striped">
+              <h4><%= order.order_for %></h4> 
+               Ordered at     <%= order.created_at %> 
+              <br> 
+               Ordered from   <%= order.order_from %></td>
 
-        <% @friend.each do |friend| %>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
 
-          <tr class="success" >
-<td><%= friend.name %></td>
+      
 
-
-
-
-          </tr>
-      <% end %>
+ <div class="col-sm-5">
+    <h2>Latest Orders</h2>
+      <table class="table " >
+        <tbody>
+       	 <% @friend.each do |friend| %>
+          	<tr class="" >
+				<td><%= friend.name %></td>
+          	</tr>
+      	 <% end %>
+      </tbody>
+    </table>
+</div>
