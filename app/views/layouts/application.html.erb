@@ -27,12 +27,21 @@
       <%= link_to 'add item', new_item_path %>
     </li>
     
-    <li class="nav-item">
-      <%= link_to "Sign out", destroy_user_session_path, :method => 'delete' %>
-
-    </li>
+    
    
-     
+   <% if current_user %>
+            <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
+            
+
+            <li class="nav-item">
+			      <%= link_to "Log out", destroy_user_session_path, :method => 'delete' %>
+    		</li>
+
+            <li class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb)) %></li>
+
+   <% else %>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+   <% end %>  
    	
   </ul>
    
