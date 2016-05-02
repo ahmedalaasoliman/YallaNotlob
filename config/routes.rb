@@ -1,11 +1,27 @@
 Rails.application.routes.draw do
-  get 'home/index'
 
-  resources :items
-  resources :orders
+ 
+  get 'users/index'
+
+  #devise_for  :users 
+    resources :friends
+    resources :orders
+    resources :items
+    resources :groups
+    
+    root 'users#index'
+
+  #get 'friends' => 'users#index', as: 'friends'
+
+  post 'ajax_response' => 'users#ajax_response', as: 'ajax'
+  post 'ajax_response_remove' => 'users#ajax_response_remove'
+  
+  #resources :items
+  #resources :orders
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   #root 'orders#index'
-  root 'home#index'
+  #root 'home#index'
+ 
   
     # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

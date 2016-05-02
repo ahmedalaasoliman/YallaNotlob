@@ -6,6 +6,10 @@
 #   has_many :friends 
 # end
 class User < ActiveRecord::Base
+
+acts_as_follower
+acts_as_followable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
      :omniauthable, :omniauth_providers => [:twitter]
