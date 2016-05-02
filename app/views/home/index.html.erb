@@ -26,15 +26,14 @@
     <h2>Latest Orders</h2>
       <table class="table " >
         <tbody>
-       	 <% @friend.each do |friend| %>
-          	<tr class="" >
-				<td><%= friend.name %> latest created </td>
-          	</tr>
-      	 <% end %>
-
+       	 
       	 <% @friend_orders.each do |friend_orders| %>
           	<tr class="" >
-				<td><%= friend_orders.order_for %></td>
+        <td>
+        <%= friend_orders.name %>
+        <br>
+        <%= friend_orders.order_for %>
+        </td>
           	</tr>
       	 <% end %>
       </tbody>

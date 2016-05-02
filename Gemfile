@@ -52,6 +52,7 @@ group :development do
   gem 'paperclip' #, '~> 4.1'
 
   gem 'bootstrap-sass'
+  gem 'public_activity'
 
 end
 
