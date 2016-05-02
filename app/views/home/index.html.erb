@@ -1,0 +1,42 @@
+
+<div class="col-sm-1"></div>
+<div class="col-sm-5">
+      <h2>Latest Orders</h2>
+      <table class="table  "  >
+        <tbody>
+
+        <% @order.each do |order| %>
+
+            <tr class="striped" >
+              <td class="striped">
+              <h4><%= order.order_for %></h4> 
+               Ordered at     <%= order.created_at %> 
+              <br> 
+               Ordered from   <%= order.order_from %></td>
+
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+      
+
+ <div class="col-sm-5">
+    <h2>Latest Orders</h2>
+      <table class="table " >
+        <tbody>
+       	 <% @friend.each do |friend| %>
+          	<tr class="" >
+				<td><%= friend.name %> latest created </td>
+          	</tr>
+      	 <% end %>
+
+      	 <% @friend_orders.each do |friend_orders| %>
+          	<tr class="" >
+				<td><%= friend_orders.order_for %></td>
+          	</tr>
+      	 <% end %>
+      </tbody>
+    </table>
+</div>
