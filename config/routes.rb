@@ -3,19 +3,22 @@ Rails.application.routes.draw do
  
   get 'users/index'
 
-  devise_for  :users 
+  #devise_for  :users 
     resources :friends
-    resources :orders do
-      resources :items
-    end
+    resources :orders
+    resources :items
     resources :groups
     
     root 'users#index'
 
+  #get 'friends' => 'users#index', as: 'friends'
+
+  post 'ajax_response' => 'users#ajax_response', as: 'ajax'
+  post 'ajax_response_remove' => 'users#ajax_response_remove'
   
   #resources :items
   #resources :orders
-  #devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   #root 'orders#index'
   #root 'home#index'
  

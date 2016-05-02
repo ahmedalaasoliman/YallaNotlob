@@ -51,7 +51,7 @@ group :development do
   #gem 'omniauth-facebook'
   #gem 'omniauth-linkedin'
   gem 'paperclip' #, '~> 4.1'
-
+  gem "acts_as_follower"
 
 end
 

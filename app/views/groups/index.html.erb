@@ -6,8 +6,8 @@
 	<div class="col-lg-6">
     <div class="input-group">
     <%= form_for(@group, remote: true) do |g| %>
-       <%= g.text_field :group %>
-       <%= g.submit %>
+       <%= g.text_field :group ,placeholder:"add new group"%>
+       <%= g.submit "add new Group",id:'addgroup' %>
     <% end %>
     </div>
   </div>
@@ -53,16 +53,14 @@
 	</div>
 </div>
 <script>
-var showarea = function(group){
-	alert(group);
-}
 
-//add new group
-var inp = $("#newgroup").val();
-$("#new_group").on("ajax:success", (e, data, status, xhr) ->
+/*$("#new_group").on("ajax:success", (e, data, status, xhr) ->
 	    $("#new_group").append xhr.responseText
 ).on "ajax:error", (e, xhr, status, error) ->
     $("#new_group").append "<p>ERROR</p>"
-
+*/
 /*$("#garea").append("<div class='row'><label onclick='showarea("+inp+")' >"+inp+"</label><button><a href=''><span class='glyphicon glyphicon-user' aria-hidden='true'></span></a></button><button><a href=''><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a></button></div>")*/
+
+
+
 </script>
