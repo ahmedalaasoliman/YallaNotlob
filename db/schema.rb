@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501175855) do
+ActiveRecord::Schema.define(version: 20160502101108) do
 
   create_table "friends", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -49,13 +49,17 @@ ActiveRecord::Schema.define(version: 20160501175855) do
   add_index "order_users", ["user_id"], name: "index_order_users_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.string   "order_for",  limit: 255
-    t.string   "order_from", limit: 255
-    t.string   "menu_image", limit: 255
-    t.string   "status",     limit: 255
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "order_for",           limit: 255
+    t.string   "order_from",          limit: 255
+    t.string   "menu_image",          limit: 255
+    t.string   "status",              limit: 255
+    t.integer  "user_id",             limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree

@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 end
 
-class User < ActiveRecord::Base
-  # existing code
+# class User < ActiveRecord::Base
+#   # existing code
 
-  end
+#   end
