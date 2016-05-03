@@ -13,6 +13,7 @@
 <p>
   <strong>Menu image:</strong>
   <%= @order.menu_image %>
+  <%= @order.avatar%>
 </p>
 
 <p>
@@ -24,6 +25,9 @@
   <strong>User:</strong>
   <%= @order.user %>
 </p>
+
+<%= image_tag @order.avatar.url(:thumb) %>
+<%= image_tag @order.avatar.url(:thumb) if @order.avatar? %>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

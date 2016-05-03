@@ -14,6 +14,10 @@ acts_as_followable
          :recoverable, :rememberable, :trackable, :validatable,
      :omniauthable, :omniauth_providers => [:twitter,:facebook]
      #:omniauthable, :omniauth_providers => [:digitalocean]
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
@@ -24,6 +28,15 @@ acts_as_followable
         user.password = Devise.friendly_token[0,20]
       end
   end
+<<<<<<< HEAD
 
 
 end
+=======
+end
+
+# class User < ActiveRecord::Base
+#   # existing code
+
+#   end
+>>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486

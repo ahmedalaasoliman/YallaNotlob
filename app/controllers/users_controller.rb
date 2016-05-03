@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
   def index
   	@followables_array = Follow.where(:follower_id => current_user.id).pluck(:followable_id)
   	@followables = []
@@ -47,4 +51,8 @@ class UsersController < ApplicationController
   end
 
 
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486

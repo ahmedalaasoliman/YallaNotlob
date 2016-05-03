@@ -6,6 +6,7 @@ gem 'rails', '4.2.6'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -51,8 +52,12 @@ group :development do
 
   #gem 'omniauth-facebook'
   #gem 'omniauth-linkedin'
+<<<<<<< HEAD
   
   gem 'bootstrap-sass'
+=======
+  gem 'paperclip' #, '~> 4.1'
+>>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
   gem "acts_as_follower"
 
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get 'users/index'
 
   resources :items
@@ -11,6 +12,31 @@ Rails.application.routes.draw do
   post 'ajax_response' => 'users#ajax_response', as: 'ajax'
   post 'ajax_response_remove' => 'users#ajax_response_remove'
 
+=======
+
+ 
+  get 'users/index'
+
+  #devise_for  :users 
+    resources :friends
+    resources :orders
+    resources :items
+    resources :groups
+    
+    root 'users#index'
+
+  #get 'friends' => 'users#index', as: 'friends'
+
+  post 'ajax_response' => 'users#ajax_response', as: 'ajax'
+  post 'ajax_response_remove' => 'users#ajax_response_remove'
+  
+  #resources :items
+  #resources :orders
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  #root 'orders#index'
+  #root 'home#index'
+ 
+>>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
   
     # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
