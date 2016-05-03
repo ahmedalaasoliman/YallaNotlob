@@ -47,10 +47,13 @@ group :development do
   gem 'devise'
   gem 'omniauth'
   gem 'omniauth-twitter'
+  gem 'omniauth-facebook'
+
   #gem 'omniauth-facebook'
   #gem 'omniauth-linkedin'
   
   gem 'bootstrap-sass'
+  gem "acts_as_follower"
 
 end
 

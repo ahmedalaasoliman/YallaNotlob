@@ -1,0 +1,2 @@
+
+$("#followed_friends").append('<h3 id="<%= @user.id %>"><%= escape_javascript(@email) %><%= button_to "unfriend", ajax_response_remove_path, remote: true, params: {id: @user.id} %></h3>');
