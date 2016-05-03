@@ -1,0 +1,32 @@
+
+<%= form_for User.new, method: :post, remote: true, :url => ajax_path do |f| %>
+	<%= f.label :email %>
+	<%= f.text_field :email, list: 'friends' %>
+	<%= f.submit :add %>
+<% end %>
+
+<datalist id="friends">
+    <% if @non_followable_emails != nil %>
+      <% @non_followable_emails.each do |u| %>
+        <option value="<%= u %>"><%= u %></option>
+    <% end %> 
+      <% end %>
+
+  </datalist>
+
+<div id ="followed_friends">
+<div style="border:10px groove black;" >
+<% if @followables != nil %>
+	<% @followables.each do |followable| %>
+		<br/>
+
+		<div style="" >
+
+			<div  style="width:250px;height:120px;padding:10px;border:10px groove red;">
+			<h3><%= followable.email %><%= button_to "unfriend", ajax_response_remove_path, remote: true, params: {id: @user.id} %></h3>
+			</div>
+	 </div>
+	<% end %>
+<% end %>
+</div>
+</div>

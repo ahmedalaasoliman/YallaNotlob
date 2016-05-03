@@ -1,8 +1,38 @@
 Rails.application.routes.draw do
+
+  get 'users/index'
+
   resources :items
   resources :orders
-  devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  get 'friends' => 'users#index', as: 'friends'
+
+  post 'ajax_response' => 'users#ajax_response', as: 'ajax'
+  post 'ajax_response_remove' => 'users#ajax_response_remove'
+
+
+
+ 
+  
+
+  #devise_for  :users 
+    resources :friends
+    resources :groups
+    
+    root 'users#index'
+
+  #get 'friends' => 'users#index', as: 'friends'
+
+ 
+  
+  #resources :items
+  #resources :orders
+  #root 'orders#index'
+  resources :home
+ 
+  
+    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

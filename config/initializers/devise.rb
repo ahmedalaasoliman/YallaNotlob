@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = 'a50799c10df1f3e5522c555fa889479a148049138c41c5d63092c9391c23bed09f942ea47336a0482eda54da6cfa1753718c67fb07b2a32f9ead61797a755e5a'
+  # config.secret_key = '499db651991939f2cacceec5b8629814b4490ac185aa7202a5840b77da59f7ad82b93de9b90004b6b441d582b6fcb1c80ac611ff0b9ca81a0f48b13e6ae1127f'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = 'fb307794310c1b4861f351ae7604bdb8c20f0ce43267586c9d0aff5757460826c742565b4b0eaf66d8f726f836d0a5df733b52c3b9755a1c4114244061fa0d27'
+  # config.pepper = '064ad0a132cfb71bcfe80ef49febc38e243cde5383844735854ec22162f0eaa1e993a4c8f367e1a0a1ee5648c2903d34985a659bf1078814e0e2537494c84b66'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -256,4 +256,26 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  #Replace example.com with your own domain name
+  config.mailer_sender = 'amagdy529@example.com'
+
+  require 'devise/orm/active_record'
+  config.case_insensitive_keys = [ :email ]
+  config.strip_whitespace_keys = [ :email ]
+  config.skip_session_storage = [:http_auth]
+  config.stretches = Rails.env.test? ? 1 : 10
+  config.reconfirmable = true
+  config.expire_all_remember_me_on_sign_out = true
+  config.password_length = 8..128
+  config.reset_password_within = 6.hours
+  config.sign_out_via = :delete
+
+  #Add your ID and secret here
+  #ID first, secret second
+  #config.omniauth :digitalocean, "db381dc9990be7e3bc42503d0", "5b0824c2722b65d29965f1a1df"
+  config.omniauth :twitter, "58G5RbS8JXVHcsLBYZxiVThDw", "Zto8mo3NDYzViE0BXa7i4wDqLnfUfnW40eO3cLyhi9KYX7ox4M"
+  config.omniauth :facebook, "565433840300743", "bce00ea7ef35001a87dbf6d0d7b1d37e"
+
+
 end

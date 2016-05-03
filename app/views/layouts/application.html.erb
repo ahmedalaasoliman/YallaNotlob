@@ -7,8 +7,93 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<!--
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+		 	<a class="navbar-brand" href="#">Brand</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/friends">Friends</a></li>
+				<li><a href="/groups">Groups</a></li>
+				<li><a href="#">Orders</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span><span class="badge">42</span></a></li>
+				<li><a href="#">user name</a></li>
+				<li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+			</ul>
+		</div>
+	</div>
+</nav>-->
+
+
+<nav class="navbar navbar-inverse bg-faded">
+	<div class="navbar-header">
+	  <a class="navbar-brand" href="">Logo</a>
+	  <ul class="nav navbar-nav">   
+		   <% if current_user %>
+		          	
+		          	<li class="nav-item">
+				    	<%= link_to 'Home', home_index_path %>
+				    </li>
+
+		          	<li class="nav-item">
+				    	<%= link_to 'Add Order', new_order_path %>
+				    </li>
+
+				    <li class="nav-item">
+				    	<%= link_to 'all Orders', orders_path %>
+				    </li>
+
+				    <li class="nav-item">
+				    	<%= link_to 'Groups', groups_path %>
+				    </li>
+
+				    <li class="nav-item">
+				    	<%= link_to 'all items', items_path %>
+				    </li>
+				   
+				    <li class="nav-item">
+				    	<%= link_to 'add item', new_item_path %>
+				    </li>
+
+				     <li class="nav-item">
+				    	<%= link_to 'My Friends', users_index_path %>
+				    </li>
+
+		            <li class="nav-item">
+		            	<%= link_to 'Edit Profile',edit_user_registration_path %>
+		            </li>
+		            
+		            <ul class="nav navbar-nav navbar-right " style="float:right">
+		           		<li class="nav-item" style="float:right">
+						      <%= link_to "Log out", destroy_user_session_path, :method => 'delete' %>
+			    		</li>
+
+			    		<li class="nav-item round-image-50">
+		        	    	<%= image_tag(current_user.avatar.url(:thumb)) %>
+		        	    </li>
+						<li>
+							<h4 style="color:white"><%= current_user.name %></h4>
+		        	    
+						</li>
+		            </ul>
+
+		            
+		   <% else %>
+		            <li><%= link_to 'Login', new_user_session_path %></li>
+		            <li><%= link_to 'sign up', new_user_registration_path %></li>
+		   <% end %>  
+		   	
+		</ul>   
+	</div>
+</nav>
 
 <%= yield %>
+
 
 </body>
 </html>

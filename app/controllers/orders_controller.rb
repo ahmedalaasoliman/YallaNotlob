@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order['user_id']=current_user.id
+    @order['status'] = "waiting" 
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -70,6 +71,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_for, :order_from, :menu_image, :status, :user_id)
+      params.require(:order).permit(:order_for, :order_from, :menu_image, :status, :user_id, :avatar)
     end
 end
