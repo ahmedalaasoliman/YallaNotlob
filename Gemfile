@@ -52,12 +52,8 @@ group :development do
 
   #gem 'omniauth-facebook'
   #gem 'omniauth-linkedin'
-<<<<<<< HEAD
-  
-  gem 'bootstrap-sass'
-=======
+
   gem 'paperclip' #, '~> 4.1'
->>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
   gem "acts_as_follower"
 
 end

@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160430233415) do
-=======
-ActiveRecord::Schema.define(version: 20160502210108) do
->>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
+ActiveRecord::Schema.define(version: 20160502101108) do
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
@@ -37,7 +33,6 @@ ActiveRecord::Schema.define(version: 20160502210108) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "friends", ["friend"], name: "friend", using: :btree
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "group_users", force: :cascade do |t|
@@ -75,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160502210108) do
   add_index "items", ["order_id"], name: "index_items_on_order_id", using: :btree
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
-<<<<<<< HEAD
   create_table "models", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -93,7 +87,7 @@ ActiveRecord::Schema.define(version: 20160502210108) do
 
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
-=======
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
     t.string   "message",    limit: 255
@@ -108,7 +102,6 @@ ActiveRecord::Schema.define(version: 20160502210108) do
   add_index "notifications", ["orders_id"], name: "index_notifications_on_orders_id", using: :btree
   add_index "notifications", ["user_id"], name: "fk_rails_b080fb4855", using: :btree
   add_index "notifications", ["users_id"], name: "index_notifications_on_users_id", using: :btree
->>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
 
   create_table "order_users", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
@@ -152,13 +145,10 @@ ActiveRecord::Schema.define(version: 20160502210108) do
     t.datetime "updated_at"
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
-<<<<<<< HEAD
-=======
     t.string   "avatar_file_name",       limit: 255
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
->>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
     t.string   "name",                   limit: 255
   end
 
@@ -166,15 +156,14 @@ ActiveRecord::Schema.define(version: 20160502210108) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "friends", "users"
-  add_foreign_key "friends", "users", column: "friend", name: "friends_ibfk_1", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "group_users", "groups", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "group_users", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "groups", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "items", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "items", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "order_users", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "order_users", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
+  add_foreign_key "groups", "users"
+  add_foreign_key "items", "orders"
+  add_foreign_key "items", "users"
+  add_foreign_key "notifications", "orders"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "order_users", "orders"
+  add_foreign_key "order_users", "users"
+  add_foreign_key "orders", "users"
 end

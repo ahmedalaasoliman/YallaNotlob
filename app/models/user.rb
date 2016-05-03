@@ -28,15 +28,13 @@ acts_as_followable
         user.password = Devise.friendly_token[0,20]
       end
   end
-<<<<<<< HEAD
 
 
-end
-=======
+
+
 end
 
 # class User < ActiveRecord::Base
 #   # existing code
 
 #   end
->>>>>>> 4746a91393ef15a2fae932dbf7dac2abd8d58486
