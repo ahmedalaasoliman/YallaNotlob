@@ -60,6 +60,7 @@ group :development do
   gem 'bootstrap-sass'
   gem 'public_activity'
   gem "acts_as_follower"
+  gem 'jquery-turbolinks'
 
 end
 
