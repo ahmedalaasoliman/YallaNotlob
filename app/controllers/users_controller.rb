@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- 
+
   def index
   	@followables_array = Follow.where(:follower_id => current_user.id).pluck(:followable_id)
   	@followables = []
@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   def user_params
   	params.require(:user).permit(:email)
   end
+
 
 
 end
