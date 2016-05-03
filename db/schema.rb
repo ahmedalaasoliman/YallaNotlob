@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20160502210108) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "friends", ["friend"], name: "friend", using: :btree
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "group_users", force: :cascade do |t|
@@ -139,15 +138,14 @@ ActiveRecord::Schema.define(version: 20160502210108) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "friends", "users"
-  add_foreign_key "friends", "users", column: "friend", name: "friends_ibfk_1", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "group_users", "groups", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "group_users", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "groups", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "items", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "items", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "order_users", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "order_users", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
+  add_foreign_key "groups", "users"
+  add_foreign_key "items", "orders"
+  add_foreign_key "items", "users"
+  add_foreign_key "notifications", "orders"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "order_users", "orders"
+  add_foreign_key "order_users", "users"
+  add_foreign_key "orders", "users"
 end

@@ -37,7 +37,7 @@
 		   <% if current_user %>
 		          	
 		          	<li class="nav-item">
-				    	<%= link_to 'Home', users_index_path %>
+				    	<%= link_to 'Home', home_index_path %>
 				    </li>
 
 		          	<li class="nav-item">
@@ -69,10 +69,13 @@
 						      <%= link_to "Log out", destroy_user_session_path, :method => 'delete' %>
 			    		</li>
 
-		        	    <li class="nav-item round-image-50">
+			    		<li class="nav-item round-image-50">
 		        	    	<%= image_tag(current_user.avatar.url(:thumb)) %>
 		        	    </li>
-			
+						<li>
+							<h4 style="color:white"><%= current_user.name %></h4>
+		        	    
+						</li>
 		            </ul>
 
 		            

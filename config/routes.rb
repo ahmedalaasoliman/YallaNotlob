@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #resources :orders
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   #root 'orders#index'
-  #root 'home#index'
+  resources :home
  
   
     # The priority is based upon order of creation: first created -> highest priority.
