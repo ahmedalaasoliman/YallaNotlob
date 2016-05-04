@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160504141959) do
-=======
-ActiveRecord::Schema.define(version: 20160502101108) do
->>>>>>> 4dc5c6129bc69a11940df65df2d68802a34ced7a
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
@@ -73,24 +69,6 @@ ActiveRecord::Schema.define(version: 20160502101108) do
   add_index "items", ["order_id"], name: "index_items_on_order_id", using: :btree
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
-  create_table "models", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
-  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
-
   create_table "notifications", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
     t.string   "message",    limit: 255
@@ -105,6 +83,17 @@ ActiveRecord::Schema.define(version: 20160502101108) do
   add_index "notifications", ["orders_id"], name: "index_notifications_on_orders_id", using: :btree
   add_index "notifications", ["user_id"], name: "fk_rails_b080fb4855", using: :btree
   add_index "notifications", ["users_id"], name: "index_notifications_on_users_id", using: :btree
+
+  create_table "order_users", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "userstatus", limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "order_users", ["order_id"], name: "index_order_users_on_order_id", using: :btree
+  add_index "order_users", ["user_id"], name: "index_order_users_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "order_for",           limit: 255
@@ -160,22 +149,9 @@ ActiveRecord::Schema.define(version: 20160502101108) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "friends", "users"
-<<<<<<< HEAD
-  add_foreign_key "friends", "users", column: "friend", name: "friends_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "groups", "users"
   add_foreign_key "gusers", "groups"
   add_foreign_key "gusers", "users"
-  add_foreign_key "items", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "items", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "orderusers", "orders"
-  add_foreign_key "orderusers", "users"
-=======
-  add_foreign_key "group_users", "groups"
-  add_foreign_key "group_users", "users"
-  add_foreign_key "groups", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"
@@ -183,5 +159,6 @@ ActiveRecord::Schema.define(version: 20160502101108) do
   add_foreign_key "order_users", "orders"
   add_foreign_key "order_users", "users"
   add_foreign_key "orders", "users"
->>>>>>> 4dc5c6129bc69a11940df65df2d68802a34ced7a
+  add_foreign_key "orderusers", "orders"
+  add_foreign_key "orderusers", "users"
 end
