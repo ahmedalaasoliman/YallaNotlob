@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(version: 20160504141959) do
   add_index "notifications", ["user_id"], name: "fk_rails_b080fb4855", using: :btree
   add_index "notifications", ["users_id"], name: "index_notifications_on_users_id", using: :btree
 
+  create_table "order_users", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "userstatus", limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "order_users", ["order_id"], name: "index_order_users_on_order_id", using: :btree
+  add_index "order_users", ["user_id"], name: "index_order_users_on_user_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.string   "order_for",           limit: 255
     t.string   "order_from",          limit: 255
@@ -139,6 +150,7 @@ ActiveRecord::Schema.define(version: 20160504141959) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "friends", "users"
+
   add_foreign_key "friends", "users", column: "friend", name: "friends_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "groups", "users"
   add_foreign_key "gusers", "groups"
@@ -148,6 +160,8 @@ ActiveRecord::Schema.define(version: 20160504141959) do
   add_foreign_key "notifications", "orders", on_update: :cascade, on_delete: :cascade
   add_foreign_key "notifications", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
+
+
   add_foreign_key "orderusers", "orders"
   add_foreign_key "orderusers", "users"
 end
