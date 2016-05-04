@@ -1,33 +1,149 @@
-<p id="notice"><%= notice %></p>
+<h2>order details</h2>
+<div class="col-lg-8">
+<table class="table">
+  <thead>
+    <tr>
+      <th>person</th>
+      <th>item</th>
+      <th>amount</th>
+      <th>price</th>
+      <th>comment </th>
+      <th>action </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+   <tbody id="tb">
+   <% @items.each do |item| %>
+    <tr id='tr<%= item.id %>' >
+    <td><%= item.person %></td>
+    <td><%= item.item_name %></td>
+    <td><%= item.amount %></td>
+    <td><%= item.price %></td>
+    <td><%= item.comment %></td>
+    <td><button onclick="removeItem(<%= item.id %>)">delete</button></td>
+    </tr>
+   <% end %>
+   </tbody>
+</table>
+</div>
 
-<p>
-  <strong>Order for:</strong>
-  <%= @order.order_for %>
-</p>
+<div class="col-lg-4">
+<p id="invitedp"><%= @invited %> users has benn invited</p><button  class="btn btn-link" data-toggle="modal" data-target="#invmodal" >view</button>
+  <p id="joinedp"><%= @joined %> users has been joined</p><button  class="btn btn-link" data-toggle="modal" data-target="#jonmodal">view</button>
+</div>
 
-<p>
-  <strong>Order from:</strong>
-  <%= @order.order_from %>
-</p>
+ <!-- Modal -->
+  <div  id="invmodal" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <% @invusers.each do |inv| %>
+            <div class='row'>
+              <%= inv.user_id %>
+              <button class='btn-danger' onclick="removeuser(<%= inv.user_id %>)">remove</button>
+            </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Menu image:</strong>
-  <%= @order.menu_image %>
-  <%= @order.avatar%>
-</p>
+   <!-- Modal -->
+  <div  id="jonmodal" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <% @jonusers.each do |jon| %>
+            <div  class='row'>
+              <%= jon.user_id %>
+               <button class='btn-danger' onclick="removeuser(<%= jon.user_id %>)">remove</button>
+               </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+    </div>
+  </div>
+ 
 
-<p>
-  <strong>Status:</strong>
-  <%= @order.status %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user %>
-</p>
 
-<%= image_tag @order.avatar.url(:thumb) %>
-<%= image_tag @order.avatar.url(:thumb) if @order.avatar? %>
+<table class="table">
+<thead>
+<tr>
+<th>item</th>
+<th>amount</th>
+<th>price</th>
+<th>comment</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<td><input type="text" id="item"></td>
+<td><input type="text" id="amount"></td>
+<td><input type="text" id="price"></td>
+<td><input type="text" id="comment"></td>
+<td><button onclick="addItem()">add</button></td>
+</tbody>
+</table>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<script>
+var removeuser = function(uid){
+  var ordid = <%= params[:id] %>;
+  $.ajax({
+    url:'/orderusers/'+uid,
+    method:'delete',
+    data:{'ordid':ordid},
+    success:function(response){
+     location.reload();
+    },
+    error:function(error){
+      console.log(error);
+    }
+  });
+}
+
+var removeItem = function(itemid){
+  $.ajax({
+    url:'/items/'+itemid,
+    method:'delete',
+    success:function(response){
+      $("#tr"+itemid+"").empty();
+    },
+    error:function(error){
+      console.log(error);
+    }
+
+  });
+}
+
+var addItem = function(){
+  var item = $("#item").val();
+  var amount = $("#amount").val();
+  var price = $("#price").val();
+  var comment = $("#comment").val();
+  var ordid = <%= params[:id]%> ;
+  $.ajax({
+    url:'/items',
+    method:'post',
+    data:{'item':item,'amount':amount,'price':price,'comment':comment,'ordid':ordid},
+    success:function(response){
+      $("#item").val("");
+      $("#amount").val("");
+      $("#price").val("");
+      $("#comment").val("");
+
+      $("#tb").append("<tr><td></td><td>"+item+"</td><td>"+amount+"</td><td>"+price+"</td><td>"+comment+"</td></tr>")
+
+    },
+    error:function(error){
+      console.log(error);
+    }
+  });
+}
+</script>

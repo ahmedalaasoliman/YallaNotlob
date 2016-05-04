@@ -3,21 +3,30 @@ class GroupsController < ApplicationController
 
 	def index
 		@groups = Group.where(user_id: current_user.id)
-		@group = Group.new
 	end
 
 	def create
-		@group = Group.new(params.require(:group))
-		@group['user_id'] = current_user.id
-		@group.save
+		@group = Group.new
+		@group.gname = params[:gname]
+		@group.user_id = current_user.id
 		respond_to do |format|
-	      format.html { redirect_to groups_path }
-	      format.json { head :no_content }
-	      format.js   { render :layout => false }
+			if @group.save
+		    	format.html { redirect_to groups_path }
+	  			
+	  		else
+	  			format.html { render action: "new" }
+	  			format.js
+	  		end
 	   end
 	end
 
 	def new
 		@group = Group.new
+ 	end
+
+ 	def destroy
+ 		group = Group.find_by(id: params[:id])
+	 	group.destroy
+	 	render json: group
  	end
 end
