@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   get 'searchuser' => 'users#searchuser'
   get 'deleteguser' => 'gusers#delall'
 
+  post 'order_ajax' => 'orders#order_ajax_response', as: 'order_ajax'
+  post 'order_ajax_remove' => 'orders#order_ajax_response_remove', as: 'order_ajax_remove'
+
   #resources :items
   #resources :orders
   #root 'orders#index'
