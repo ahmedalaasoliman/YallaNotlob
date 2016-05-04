@@ -46,6 +46,10 @@ def self.from_omniauth(auth)
 
 end
 
+
+
+
+
 # class User < ActiveRecord::Base
 #   # existing code
 
