@@ -12,9 +12,15 @@ class HomeController < ApplicationController
 	 #@friend_orders=Order.find_by_sql(["select name , order_for from orders , friends  , users  
 	 	#where friends.user_id= ? and users.id = friends.friend 
 	 	#and friends.friend = users.id" , @user_id]).last(5)
-	 @friend_orders=Order.find_by_sql(["select name , order_for , order_from from orders , follows  , users  
-	 								where follows.id= ? and users.id = follows.id and 
-	 								follows.follower_id = users.id" , @user_id]).last(5)
+	 # @friend_orders=Order.find_by_sql(["select name , order_for , order_from from orders , follows  , users  
+	 								# where follows.id= ? and users.id = follows.id and 
+	 								# follows.follower_id = users.id" , @user_id]).last(5)
+
+	 @f = Follow.where(:follower_id => current_user).pluck(:followable_id)
+
+
+    @activities = PublicActivity::Activity.order("created_at desc").where('owner_id in (?)' ,@f)
+
   end
   
 end
