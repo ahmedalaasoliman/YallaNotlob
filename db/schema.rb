@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160503195827) do
+ActiveRecord::Schema.define(version: 20160504141959) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -30,13 +29,6 @@ ActiveRecord::Schema.define(version: 20160503195827) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160504141959) do
-=======
-ActiveRecord::Schema.define(version: 20160502101108) do
->>>>>>> 4dc5c6129bc69a11940df65df2d68802a34ced7a
->>>>>>> 7b18f334459a0351e6c57a787847b758ede319b7
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
@@ -127,6 +119,17 @@ ActiveRecord::Schema.define(version: 20160502101108) do
   add_index "notifications", ["user_id"], name: "fk_rails_b080fb4855", using: :btree
   add_index "notifications", ["users_id"], name: "index_notifications_on_users_id", using: :btree
 
+  create_table "order_users", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "userstatus", limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "order_users", ["order_id"], name: "index_order_users_on_order_id", using: :btree
+  add_index "order_users", ["user_id"], name: "index_order_users_on_user_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.string   "order_for",           limit: 255
     t.string   "order_from",          limit: 255
@@ -181,22 +184,9 @@ ActiveRecord::Schema.define(version: 20160502101108) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "friends", "users"
-<<<<<<< HEAD
-  add_foreign_key "friends", "users", column: "friend", name: "friends_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "groups", "users"
   add_foreign_key "gusers", "groups"
   add_foreign_key "gusers", "users"
-  add_foreign_key "items", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "items", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "orderusers", "orders"
-  add_foreign_key "orderusers", "users"
-=======
-  add_foreign_key "group_users", "groups"
-  add_foreign_key "group_users", "users"
-  add_foreign_key "groups", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"
@@ -204,5 +194,6 @@ ActiveRecord::Schema.define(version: 20160502101108) do
   add_foreign_key "order_users", "orders"
   add_foreign_key "order_users", "users"
   add_foreign_key "orders", "users"
->>>>>>> 4dc5c6129bc69a11940df65df2d68802a34ced7a
+  add_foreign_key "orderusers", "orders"
+  add_foreign_key "orderusers", "users"
 end
