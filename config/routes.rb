@@ -8,14 +8,17 @@ Rails.application.routes.draw do
     resources :orders
     resources :items
     resources :groups
-    
+    resources :gusers
+    resources :orderusers
     root 'users#index'
 
   #get 'friends' => 'users#index', as: 'friends'
 
   post 'ajax_response' => 'users#ajax_response', as: 'ajax'
   post 'ajax_response_remove' => 'users#ajax_response_remove'
-  
+  post 'getUserData' => 'users#getUserData'
+  get 'searchuser' => 'users#searchuser'
+  get 'deleteguser' => 'gusers#delall'
   #resources :items
   #resources :orders
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }

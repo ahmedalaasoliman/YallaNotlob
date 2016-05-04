@@ -10,6 +10,14 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    #puts params
+    @items = Item.where(order_id: params[:id])
+    @invited = Orderuser.where(order_id: params[:id]).count
+    @joined = Orderuser.where(order_id: params[:id],status: 'joined').count
+    @invusers = Orderuser.where(order_id: params[:id])
+    @jonusers = Orderuser.where(order_id: params[:id],status: 'joined')
+    puts @invited
+    puts @joined
   end
 
   # GET /orders/new

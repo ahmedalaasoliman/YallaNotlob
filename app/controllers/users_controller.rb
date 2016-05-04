@@ -47,5 +47,17 @@ class UsersController < ApplicationController
   	params.require(:user).permit(:email)
   end
 
+  def getUserData
+  	puts params[:uid]
+  	@user = User.where(id: params[:uid])
+  	render json: @user
+  end
+
+  def searchuser
+  	puts params[:friend]
+  	@user = User.where(email: params[:friend])
+  	puts @user
+  	render json: @user
+  end
 
 end
