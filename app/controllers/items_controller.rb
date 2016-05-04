@@ -25,19 +25,31 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
-    @item['user_id']=current_user.id
+    puts params
+    @item = Item.new
+    @item.user_id = current_user.id
+    user = User.find_by(id: current_user.id )
+    @item.person = user.email
+    @item.item_name = params[:item]
+    @item.amount = params[:amount]
+    @item.price = params[:price]
+    @item.comment = params[:comment]
+    @item.order_id = params[:ordid]
+    @item.save
+    render json: @item
+   # @item = Item.new(item_params)
+    #@item['user_id']=current_user.id
     #@order = Order.find(params[:order_id])
     #@item = @order.items.create(item_params)
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
-    end
+    #respond_to do |format|
+     # if @item.save
+      #  format.html { redirect_to @item, notice: 'Item was successfully created.' }
+       # format.json { render :show, status: :created, location: @item }
+      #else
+       # format.html { render :new }
+        #format.json { render json: @item.errors, status: :unprocessable_entity }
+      #end
+    #end
   end
 
   # PATCH/PUT /items/1
@@ -57,11 +69,9 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
+    @item  = Item.find(params[:id])
     @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: @item
   end
 
   private
