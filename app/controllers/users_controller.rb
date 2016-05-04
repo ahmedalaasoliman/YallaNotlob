@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- 
+
   def index
   	@followables_array = Follow.where(:follower_id => current_user.id).pluck(:followable_id)
   	@followables = []
@@ -59,5 +59,6 @@ class UsersController < ApplicationController
   	puts @user
   	render json: @user
   end
+
 
 end

@@ -1,12 +1,22 @@
 Rails.application.routes.draw do
 
- 
   get 'users/index'
+
+  resources :items
+  resources :orders
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  get 'friends' => 'users#index', as: 'friends'
+
+
+
+
+
+ 
+  
 
   #devise_for  :users 
     resources :friends
-    resources :orders
-    resources :items
     resources :groups
     resources :gusers
     resources :orderusers
@@ -14,16 +24,17 @@ Rails.application.routes.draw do
 
   #get 'friends' => 'users#index', as: 'friends'
 
+
   post 'ajax_response' => 'users#ajax_response', as: 'ajax'
   post 'ajax_response_remove' => 'users#ajax_response_remove'
   post 'getUserData' => 'users#getUserData'
   get 'searchuser' => 'users#searchuser'
   get 'deleteguser' => 'gusers#delall'
+
   #resources :items
   #resources :orders
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   #root 'orders#index'
-  #root 'home#index'
+  resources :home
  
   
     # The priority is based upon order of creation: first created -> highest priority.

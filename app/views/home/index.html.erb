@@ -1,7 +1,14 @@
 
-<div class="col-sm-1"></div>
-<div class="col-sm-5">
-      <h2>Latest Orders</h2>
+
+  <div class="col-sm-2 pull-right" style="direction: rtl;">
+    <img src="assets/fat.gif" class="gap-right" style="width: 200px; height: 200px;">
+  </div>
+
+
+
+<div class="col-sm-5" >
+    <h2 style="color: #ffffff;">Latest Orders</h2>
+  
       <table class="table  "  >
         <tbody>
 
@@ -18,25 +25,30 @@
         <% end %>
         </tbody>
       </table>
-    </div>
+  
+</div>
 
       
 
- <div class="col-sm-5">
-    <h2>Latest Orders</h2>
+<div class="col-sm-5">
+    <h2 style="color: #ffffff;">Friends Activity</h2>
+
+
       <table class="table " >
         <tbody>
-       	 <% @friend.each do |friend| %>
-          	<tr class="" >
-				<td><%= friend.name %> latest created </td>
-          	</tr>
-      	 <% end %>
-
+       	 
       	 <% @friend_orders.each do |friend_orders| %>
           	<tr class="" >
-				<td><%= friend_orders.order_for %></td>
+        <td>
+        <%= friend_orders.name %>
+        <br>
+        <%= friend_orders.order_for %>
+        <br>
+        <%= friend_orders.order_from %>
+        </td>
           	</tr>
       	 <% end %>
       </tbody>
     </table>
+
 </div>
