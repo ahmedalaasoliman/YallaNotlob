@@ -1,10 +1,13 @@
 
 
-  
+  <div class="col-sm-2 pull-right" style="direction: rtl;">
+    <img src="assets/fat.gif" class="gap-right" style="width: 200px; height: 200px;">
+  </div>
+
 
 
 <div class="col-sm-5" >
-    <h2 style="color: #00000;">Latest Orders</h2>
+    <h2 style="color: #ffffff;">Latest Orders</h2>
   
       <table class="table  "  >
         <tbody>
@@ -37,7 +40,7 @@
       has ordered from
       <%= activity.trackable.restaurant%></h3>
 
-                  <p class="date"><%= time_ago_in_words(activity.created_at) %> ago</p>
+    <p class="date"><%= time_ago_in_words(activity.created_at) %> ago</p>
 
 
      </div>
