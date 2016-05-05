@@ -13,8 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160504162630) do
 
-#ActiveRecord::Schema.define(version: 20160504141959) do
-
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
     t.string   "trackable_type", limit: 255
@@ -31,7 +29,6 @@ ActiveRecord::Schema.define(version: 20160504162630) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
->>>>>>> b81d082b5bb22236d46148be4bb455c7930232e1
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
@@ -88,24 +85,6 @@ ActiveRecord::Schema.define(version: 20160504162630) do
 
   add_index "items", ["order_id"], name: "index_items_on_order_id", using: :btree
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
-
-  create_table "models", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
-  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "recipient_id",    limit: 4
