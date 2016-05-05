@@ -10,7 +10,7 @@ class HomeController < ApplicationController
 		#where friends.user_id= ? and users.id = friends.friend 
 		#and friends.friend = users.id" , @user_id]).last(5)
 	@friend_orders=Order.find_by_sql(["select name , order_for , order_from from orders , follows  , users  
-									where follows.id= ? and users.id = follows.id and 
+									where follows.follower_id= ? and users.id = follows.followable_id and 
 									follows.follower_id = users.id" , @user_id]).last(5)
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502210108) do
+ActiveRecord::Schema.define(version: 20160504162630) do
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
@@ -71,19 +71,15 @@ ActiveRecord::Schema.define(version: 20160502210108) do
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "order_id",   limit: 4
-    t.string   "message",    limit: 255
-    t.integer  "user_id",    limit: 4
-    t.integer  "users_id",   limit: 4
-    t.integer  "orders_id",  limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "recipient_id",    limit: 4
+    t.integer  "actor_id",        limit: 4
+    t.datetime "read_at"
+    t.string   "action",          limit: 255
+    t.integer  "notifiable_id",   limit: 4
+    t.string   "notifiable_type", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
-
-  add_index "notifications", ["order_id"], name: "fk_rails_fd5a31cf2f", using: :btree
-  add_index "notifications", ["orders_id"], name: "index_notifications_on_orders_id", using: :btree
-  add_index "notifications", ["user_id"], name: "fk_rails_b080fb4855", using: :btree
-  add_index "notifications", ["users_id"], name: "index_notifications_on_users_id", using: :btree
 
   create_table "order_users", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
@@ -143,8 +139,6 @@ ActiveRecord::Schema.define(version: 20160502210108) do
   add_foreign_key "groups", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
-  add_foreign_key "notifications", "orders"
-  add_foreign_key "notifications", "users"
   add_foreign_key "order_users", "orders"
   add_foreign_key "order_users", "users"
   add_foreign_key "orders", "users"

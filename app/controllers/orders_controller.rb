@@ -29,6 +29,11 @@ class OrdersController < ApplicationController
     @order['status'] = "waiting" 
     respond_to do |format|
       if @order.save
+        
+        (@order.users.uniq - [current_user]).each do |user|
+          Notification.create(recipient: user, actor: current_user, action: "ordered", notifiable: @order)
+        end
+
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
