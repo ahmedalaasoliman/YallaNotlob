@@ -1,0 +1,4 @@
+var id = <%= @user.id %>
+
+
+$('#order_friends').append('<li id = "'+ id +'"><%= escape_javascript(@user.name) %> <%= button_to "remove", order_ajax_remove_path,  remote: true, params: {email: @email, id: @user.id} %></li>');

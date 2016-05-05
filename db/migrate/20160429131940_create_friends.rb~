@@ -1,8 +1,8 @@
-class CreateGroups < ActiveRecord::Migration
+class CreateFriends < ActiveRecord::Migration
   def change
-    create_table :groups do |t|
+    create_table :friends do |t|
       t.integer :user_id
-      t.string :group
+      t.integer :friend
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false

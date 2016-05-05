@@ -8,8 +8,7 @@ Rails.application.routes.draw do
 
   get 'friends' => 'users#index', as: 'friends'
 
-  post 'ajax_response' => 'users#ajax_response', as: 'ajax'
-  post 'ajax_response_remove' => 'users#ajax_response_remove'
+
 
 
 
@@ -19,13 +18,22 @@ Rails.application.routes.draw do
   #devise_for  :users 
     resources :friends
     resources :groups
-    
+    resources :gusers
+    resources :orderusers
     root 'users#index'
 
   #get 'friends' => 'users#index', as: 'friends'
 
- 
-  
+
+  post 'ajax_response' => 'users#ajax_response', as: 'ajax'
+  post 'ajax_response_remove' => 'users#ajax_response_remove'
+  post 'getUserData' => 'users#getUserData'
+  get 'searchuser' => 'users#searchuser'
+  get 'deleteguser' => 'gusers#delall'
+
+  post 'order_ajax' => 'orders#order_ajax_response', as: 'order_ajax'
+  post 'order_ajax_remove' => 'orders#order_ajax_response_remove', as: 'order_ajax_remove'
+
   #resources :items
   #resources :orders
   #root 'orders#index'

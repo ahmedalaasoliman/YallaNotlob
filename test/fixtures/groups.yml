@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  group: MyString
+  gname: MyString
   user_id: 
 
 two:
   user_id: 1
-  group: MyString
+  gname: MyString
   user_id: 

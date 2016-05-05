@@ -1,20 +1,75 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /orders
   # GET /orders.json
   def index
     @orders = Order.all
+
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    #puts params
+    @items = Item.where(order_id: params[:id])
+    @invited = Orderuser.where(order_id: params[:id]).count
+    @joined = Orderuser.where(order_id: params[:id],status: 'joined').count
+    @invusers = Orderuser.where(order_id: params[:id])
+    @jonusers = Orderuser.where(order_id: params[:id],status: 'joined')
+    puts @invited
+    puts @joined
   end
 
   # GET /orders/new
   def new
     @order = Order.new
+    #global variable to store invited friends. will be used when submitting the new order form in create action
+    $order_invited_friends = []
+    @followables = Follow.where(follower_id: current_user.id).pluck(:followable_id)
+
+    @followables_array  = []
+    @followables.each do |id|
+      @email = User.find(id).email
+      @followables_array.push(@email)
+    end
+  end
+
+  def order_ajax_response
+    puts "*******************************user**********************************"
+    @users_emails = User.all.pluck(:email)
+    @followables_ids = Follow.where(:follower_id => current_user.id).pluck(:followable_id)
+
+    respond_to do |format|
+      @email = params[:order][:order_for]
+      if @users_emails.include? @email
+        @user = User.find_by_email(@email)
+        if @followables_ids.include? @user.id and !$order_invited_friends.include? @email
+          format.html
+          format.js
+          $order_invited_friends.push(@email)
+
+        #else
+        end
+      #else
+      end
+
+
+    end
+  end
+
+  def order_ajax_response_remove
+    respond_to do |format|
+      @email = params[:email]
+      @id = params[:id]
+      format.html
+      format.js
+      $order_invited_friends.delete(@email)
+
+    end
+
+
   end
 
   # GET /orders/1/edit
@@ -30,9 +85,18 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         
+
         (@order.users.uniq - [current_user]).each do |user|
           Notification.create(recipient: user, actor: current_user, action: "ordered", notifiable: @order)
         end
+
+
+        $order_invited_friends.each do |o|
+            # saving into orders_users table
+            @user = User.find_by_email(o)
+            Orderuser.create(:order_id => @order.id, :user_id => @user.id)
+          end
+
 
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }

@@ -49,6 +49,8 @@ group :development do
   gem 'omniauth'
   gem 'omniauth-twitter'
   gem 'omniauth-facebook'
+  gem 'omniauth-google-oauth2'
+  gem 'public_activity'
 
   #gem 'omniauth-facebook'
   #gem 'omniauth-linkedin'
@@ -59,6 +61,7 @@ group :development do
   gem 'bootstrap-sass'
   gem 'public_activity'
   gem "acts_as_follower"
+  gem 'jquery-turbolinks'
 
 end
 
