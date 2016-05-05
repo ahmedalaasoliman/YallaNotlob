@@ -50,6 +50,7 @@ group :development do
   gem 'omniauth-twitter'
   gem 'omniauth-facebook'
   gem 'omniauth-google-oauth2'
+  #gem 'public_activity'
 
   #gem 'omniauth-facebook'
   #gem 'omniauth-linkedin'
@@ -61,6 +62,6 @@ group :development do
   gem 'public_activity'
   gem "acts_as_follower"
   gem 'jquery-turbolinks'
-
+  gem "font-awesome-rails"
 end
 
