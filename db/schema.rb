@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 20160505085801) do
   add_index "gusers", ["group_id"], name: "index_gusers_on_group_id", using: :btree
   add_index "gusers", ["user_id"], name: "index_gusers_on_user_id", using: :btree
 
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
   create_table "items", force: :cascade do |t|
     t.string   "item_name",  limit: 255
     t.integer  "amount",     limit: 4
@@ -96,7 +106,10 @@ ActiveRecord::Schema.define(version: 20160505085801) do
     t.string   "notifiable_type", limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "order_id",        limit: 4
   end
+
+  add_index "notifications", ["order_id"], name: "index_notifications_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "order_for",           limit: 255
@@ -158,8 +171,10 @@ ActiveRecord::Schema.define(version: 20160505085801) do
   add_foreign_key "groups", "users"
   add_foreign_key "gusers", "groups"
   add_foreign_key "gusers", "users"
+  add_foreign_key "identities", "users"
   add_foreign_key "items", "orders", on_update: :cascade, on_delete: :cascade
   add_foreign_key "items", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "notifications", "orders"
   add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "orderusers", "orders"
   add_foreign_key "orderusers", "users"

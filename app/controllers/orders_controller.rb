@@ -105,10 +105,17 @@ class OrdersController < ApplicationController
       if @order.save
         
 
-        # (@order.users.uniq - [current_user]).each do |user|
-        #   Notification.create(recipient: user, actor: current_user, action: "ordered", notifiable: @order)
-        # end
+         # (@users.uniq - [current_user]).each do |user|
+         #   Notification.create(recipient: current_user, actor: current_user, action: "ordered", notifiable: @order , order: @order['id'])
+         # end
 
+
+      
+
+        ($order_invited_friends.uniq - [current_user]).each do |user|
+          @userIdX = User.find_by_email(user)
+          Notification.create(recipient: @userIdX, actor: current_user, action: "ordered", notifiable: @order , order: @order)
+        end
 
         $order_invited_friends.each do |o|
             # saving into orders_users table

@@ -62,6 +62,6 @@ group :development do
   gem 'public_activity'
   gem "acts_as_follower"
   gem 'jquery-turbolinks'
-
+  gem "font-awesome-rails"
 end
 

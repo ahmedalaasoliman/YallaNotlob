@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <%= form_for @order, remote: true, :url => order_ajax_path do |f| %>
   <label>you can write friend email</label></br>
   <%= f.label :friends, "Email" %>:
@@ -14,6 +16,7 @@
     <% end %>
   </datalist><br/><br/>
   <% end %>
+>>>>>>> 0769b94709c4524de61c475bbce7bc81cac6bd94
 
 <%= form_for @order, url:orders_path, html:{ multipart: true } do |f| %>
 
