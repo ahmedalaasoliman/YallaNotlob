@@ -22,13 +22,13 @@ Rails.application.routes.draw do
     resources :groups
     resources :gusers
     resources :orderusers
-    resources :notifications
+    #resources :notifications
 
-  # resources :notifications do
-  #   collection do
-  #     post :mark_as_read
-  #   end
-  # end
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 
     #root 'users#index'
 
