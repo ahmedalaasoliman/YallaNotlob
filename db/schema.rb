@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20160505085801) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "friends", ["friend"], name: "friend", using: :btree
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
@@ -133,10 +132,10 @@ ActiveRecord::Schema.define(version: 20160505085801) do
     t.string   "order_for",           limit: 255
     t.string   "order_from",          limit: 255
     t.string   "menu_image",          limit: 255
-    t.string   "status",              limit: 255, default: "waiting"
+    t.string   "status",              limit: 255
     t.integer  "user_id",             limit: 4
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
@@ -185,16 +184,14 @@ ActiveRecord::Schema.define(version: 20160505085801) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "friends", "users"
-  add_foreign_key "friends", "users", column: "friend", name: "friends_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "groups", "users"
   add_foreign_key "gusers", "groups"
   add_foreign_key "gusers", "users"
   add_foreign_key "identities", "users"
-  add_foreign_key "items", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "items", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "items", "orders"
+  add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"
-
-  add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "orders", "users"
   add_foreign_key "orderusers", "orders"
   add_foreign_key "orderusers", "users"
 end
