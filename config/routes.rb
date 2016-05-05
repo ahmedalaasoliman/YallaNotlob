@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
+
   get 'users/index'
 
   resources :items
@@ -20,6 +22,14 @@ Rails.application.routes.draw do
     resources :groups
     resources :gusers
     resources :orderusers
+    resources :notifications
+
+  # resources :notifications do
+  #   collection do
+  #     post :mark_as_read
+  #   end
+  # end
+
     #root 'users#index'
 
   #get 'friends' => 'users#index', as: 'friends'
