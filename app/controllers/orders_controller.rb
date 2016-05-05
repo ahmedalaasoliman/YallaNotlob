@@ -5,8 +5,27 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @ord = Orderuser.where(user_id: current_user.id)
+    @allorders = []
+    @ord.each do |ordid|
+      @order = Order.find(ordid.order_id)
+      joined = Orderuser.where(order_id: @order.id,status: 'joined').count
+      invited = Orderuser.where(order_id: @order.id).count
+      @order.invited = invited
+      @order.joined = joined
+      @order.save
+      @allorders.push(@order)
+    end
 
+  end
+
+  def finish
+    puts "**********************************************"
+    puts params
+    order = Order.find(params[:format])
+    order.status = "finished"
+    order.save
+    redirect_to orders_path
   end
 
   # GET /orders/1
