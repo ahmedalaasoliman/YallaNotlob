@@ -18,11 +18,16 @@
 		    <h3 class="panel-title">My Groups</h3>
 		  </div>
 		  <div class="panel-body" id="garea">
-		    <%= @groups.each do |group| %>
+		    <% @groups.each do |group| %>
 		    	<div class="row" id=<%= group.id %> >
+		    	<div class="col-lg-8">
 		    		<label ><%= group.gname %></label>
+		    	</div>
+		    	<div class="col-lg-4">
 		    		<button onclick="friendsInGroup(<%= group.id %>)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>	
-		    		<button onclick="removegroup(<%= group.id %>)" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>	
+		    		<button onclick="removegroup(<%= group.id %>)" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+		    	</div>
+		   	
 		    	</div>
 			<% end %>
 		  </div>
@@ -65,8 +70,9 @@ $("#addgroup").on("click",function(){
 		
 		success:function(response){
 			console.log("suc");
-		$("#garea").append("<div class='row' id='"+inp+"'><label>"+inp+"</label></div>");
-			$("#gname").val("");
+		/*$("#garea").append("<div class='row' id='"+inp+"'><label>"+inp+"</label></div>");
+			$("#gname").val("");*/
+			location.reload();
 		},
 		error:function(error){
 			console.log("err");

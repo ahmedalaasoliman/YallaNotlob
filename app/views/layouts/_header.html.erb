@@ -6,55 +6,113 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body style="background-image : url('')" >
+<body style="background-image : url('/assets/wood7.jpg')">
+  <div class="clearfix">
+    <img  class="pull-left gap-left" src="/assets/pizza.png" style="width: 200px; height: 200px; margin-left: 100px;">
+
+    <img  class="pull-right gap-left" src="/assets/pizza.png" style="width: 200px; height: 200px; margin-right: 100px;">
+
+    <img class="center-block" src="/assets/title.png" style="height:150px;">
+  </div>
+  
     
-	
+<<<<<<< HEAD
+  
 
 <nav class="navbar navbar-inverse" style=" color:white ; background: rgba(0, 0, 0, 0.8); height: 50px;">
-			<div class="container-fluid" >
-    			<div class="navbar-header" >
-    				<button class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
-						<span class="glyphicon glyphicon-align-justify"></span>
-					</button>
-      			</div>
-      			<div class="navbar-brand" >
-      				<%= link_to 'YALLA NOTLOB', home_index_path %>
-      			</div>
-      			<div class="collapse navbar-collapse" id="my-navbar">
-    				<ul class="nav navbar-nav">
-    				<% if current_user %>
-      					<li class="tab-list"><%= link_to 'Home', home_index_path %></li>
-      					<li class="tab-list"><%= link_to 'Add Order', new_order_path %></li>
-      					<li class="tab-list"><%= link_to 'all Orders', orders_path %></li>
-						    <li class="tab-list"><%= link_to 'Groups', groups_path %></li>
-      					<li class="tab-list"><%= link_to 'all items', items_path %></li>
-      					<li class="tab-list"><%= link_to 'add item', new_item_path %></li>
-      					<li class="tab-list"><%= link_to 'My Friends', users_index_path %></li>
+      <div class="container-fluid" >
+          <div class="navbar-header" >
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
+            <span class="glyphicon glyphicon-align-justify"></span>
+          </button>
+            </div>
+            <div class="navbar-brand" >
+              <%= link_to 'YALLA NOTLOB', home_index_path %>
+            </div>
+            <div class="collapse navbar-collapse" id="my-navbar">
+            <ul class="nav navbar-nav">
+            <% if current_user %>
+                <li class="tab-list"><%= link_to 'Home', home_index_path %></li>
+                <li class="tab-list"><%= link_to 'Add Order', new_order_path %></li>
+                <li class="tab-list"><%= link_to 'all Orders', orders_path %></li>
+                <li class="tab-list"><%= link_to 'Groups', groups_path %></li>
+                <li class="tab-list"><%= link_to 'all items', items_path %></li>
+                <li class="tab-list"><%= link_to 'add item', new_item_path %></li>
+                <li class="tab-list"><%= link_to 'My Friends', users_index_path %></li>
                 <li class="tab-list"><%= link_to 'notifications_under development', notifications_index_path %></li>
-    				</ul>
-    				<ul class="nav navbar-nav navbar-right">
-    					<li class="nav-item round-image-50">
-		        	    	<%= image_tag(current_user.avatar.url(:thumb)) %>
-		        	    </li>
-    					<li class="dropdown">
-    						<a class="dropdown-toggle" data-toggle="dropdown" href=""><%= current_user.name %>
-        					<span class="caret"></span></a>
-    						<ul class="dropdown-menu" role="menu">
-          						<li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
-          						<li><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
-          					</ul>
-    					</li>
-    					<li></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item round-image-50">
+                    <%= image_tag(current_user.avatar.url(:thumb)) %>
+                  </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href=""><%= current_user.name %>
+                  <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                      <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
+                      <li><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
+                    </ul>
+              </li>
+              <li></li>
         
         
       
-    				</ul>
-    			<% else %>
-		            <li><%= link_to 'Login', new_user_session_path %></li>
-		            <li><%= link_to 'sign up', new_user_registration_path %></li>
-		   		<% end %>  
-    			</div>
-  			</div>
-		</nav>
+            </ul>
+          <% else %>
+                <li><%= link_to 'Login', new_user_session_path %></li>
+                <li><%= link_to 'sign up', new_user_registration_path %></li>
+          <% end %>  
+          </div>
+        </div>
+    </nav>
+=======
+ <div class="container" style="background: rgba(45, 16, 0, 0.5); border: solid #ffffff 1px;">
 
-  
+<!-- ////////////////////////// -->
+<nav class="navbar clearfix" style="background: rgba(49, 27, 0, 0.8); height: 50px;">
+     <div class="container-fluid">
+         <div class="navbar-header">
+           <button class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
+           <span class="glyphicon glyphicon-align-justify"></span>
+         </button>
+           </div>
+           <div class="navbar-brand">
+             <%= link_to 'YALLA NOTLOB', home_index_path %>
+           </div>
+           <div class="collapse navbar-collapse" id="my-navbar">
+           <ul class="nav navbar-nav">
+           <% if current_user %>
+               <li class="tab-list"><%= link_to 'Home', home_index_path %></li>
+               <li class="tab-list"><%= link_to 'Add Order', new_order_path %></li>
+               <li class="tab-list"><%= link_to 'all Orders', orders_path %></li>
+           <li class="tab-list"><%= link_to 'Groups', groups_path %></li>
+               <li class="tab-list"><%= link_to 'all items', items_path %></li>
+               <li class="tab-list"><%= link_to 'add item', new_item_path %></li>
+               <li class="tab-list"><%= link_to 'My Friends', users_index_path %></li>
+                <li class="tab-list"><%= link_to 'notifications_under development', notifications_index_path %></li>
+           </ul>
+           <ul class="nav navbar-nav navbar-right">
+             <li class="nav-item round-image-50">
+                   <%= image_tag(current_user.avatar.url(:thumb)) %>
+                 </li>
+             <li class="dropdown">
+               <a class="dropdown-toggle" data-toggle="dropdown" href=""><%= current_user.name %>
+                 <span class="caret"></span></a>
+               <ul class="dropdown-menu" role="menu">
+                     <li><%= link_to 'Edit Profile',edit_user_registration_path %></li>
+                     <li><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
+                   </ul>
+             </li>
+             <li></li>
+        
+        
+      
+           </ul>
+         <% else %>
+               <li><%= link_to 'Login', new_user_session_path %></li>
+               <li><%= link_to 'sign up', new_user_registration_path %></li>
+         <% end %>  
+         </div>
+       </div>
+   </nav>
+>>>>>>> 10a6c527f57b88fbd48da71791dc8a3a9e7a82f6

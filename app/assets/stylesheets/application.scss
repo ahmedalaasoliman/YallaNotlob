@@ -15,7 +15,10 @@
  */
 
  @import "bootstrap-sprockets";
+ @import "variables";
  @import "bootstrap";
+ @import "font-awesome " ;
+
 
  .round-image-50 {
     background-color: white;

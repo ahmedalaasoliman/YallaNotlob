@@ -28,7 +28,7 @@
 </div>
 
 <div class="col-lg-4">
-<p id="invitedp"><%= @invited %> users has benn invited</p><button  class="btn btn-link" data-toggle="modal" data-target="#invmodal" >view</button>
+<p id="invitedp"><%= @invited %> users has benn invited</p><button  class="btn btn-link " data-toggle="modal" data-target="#invmodal" >view</button>
   <p id="joinedp"><%= @joined %> users has been joined</p><button  class="btn btn-link" data-toggle="modal" data-target="#jonmodal">view</button>
 </div>
 
@@ -100,7 +100,7 @@ var removeuser = function(uid){
     method:'delete',
     data:{'ordid':ordid},
     success:function(response){
-     location.reload();
+     //location.reload();
     },
     error:function(error){
       console.log(error);

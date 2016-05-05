@@ -22,13 +22,13 @@ Rails.application.routes.draw do
     resources :groups
     resources :gusers
     resources :orderusers
-    resources :notifications
+    #resources :notifications
 
-  # resources :notifications do
-  #   collection do
-  #     post :mark_as_read
-  #   end
-  # end
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 
     #root 'users#index'
 
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   post 'getUserData' => 'users#getUserData'
   get 'searchuser' => 'users#searchuser'
   get 'deleteguser' => 'gusers#delall'
-
+  get 'finishorder' => 'orders#finish'
   post 'order_ajax' => 'orders#order_ajax_response', as: 'order_ajax'
   post 'order_ajax_remove' => 'orders#order_ajax_response_remove', as: 'order_ajax_remove'
 
