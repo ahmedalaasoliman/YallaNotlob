@@ -1,10 +1,5 @@
-
-
-  
-
-
 <div class="col-sm-5" >
-    <h2 style="color: #00000;">Latest Orders</h2>
+    <h2 style="color: #000000;">Latest Orders</h2>
   
       <table class="table  "  >
         <tbody>
@@ -25,22 +20,29 @@
   
 </div>
 
-      
 
 <div class="col-sm-5">
-          <h2>Friends Activity</h2>
+  <h2>Friends Activity</h2>
+    <table class="table  "  >
+        <tbody>
+          <% @friend_orders.each do |friend_orders| %>
+            <tr class="striped" >
+              <td class="striped">
+                <h4><%= friend_orders.name %></h4> <%= "has created an order for"%> <%= friend_orders.order_for %> <%= "from" %> <%= friend_orders.order_from %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+</div>
 
-<% @activities.each do |activity| %>
-        <div class="post_wrapper">
-      <!-- name :<%= link_to activity.owner.name %> -->
-      <h3 class="title"><%=  activity.owner.name %>
-      has ordered from
-      <%= activity.trackable.restaurant%></h3>
-
-                  <p class="date"><%= time_ago_in_words(activity.created_at) %> ago</p>
 
 
-     </div>
-  <% end %>
 
-    </div>
+
+    <div id="main-container" class="container-fluid" xmlns="http://www.w3.org/1999/html">
+
+  <div class="container">
+
+
+  <p id="notice"><%= notice %></p>
