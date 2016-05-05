@@ -42,7 +42,6 @@ def self.from_omniauth(auth)
                user.name = auth.info.name
                user.save!
              end
-             user
          end
 def self.new_with_session(params, session)
         super.tap do |user|
