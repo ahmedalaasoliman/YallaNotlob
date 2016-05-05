@@ -86,9 +86,9 @@ class OrdersController < ApplicationController
       if @order.save
         
 
-        (@order.users.uniq - [current_user]).each do |user|
-          Notification.create(recipient: user, actor: current_user, action: "ordered", notifiable: @order)
-        end
+        # (@order.users.uniq - [current_user]).each do |user|
+        #   Notification.create(recipient: user, actor: current_user, action: "ordered", notifiable: @order)
+        # end
 
 
         $order_invited_friends.each do |o|
