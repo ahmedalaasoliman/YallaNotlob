@@ -275,7 +275,7 @@ Devise.setup do |config|
   #ID first, secret second
   #config.omniauth :digitalocean, "db381dc9990be7e3bc42503d0", "5b0824c2722b65d29965f1a1df"
   config.omniauth :twitter, "58G5RbS8JXVHcsLBYZxiVThDw", "Zto8mo3NDYzViE0BXa7i4wDqLnfUfnW40eO3cLyhi9KYX7ox4M"
-  config.omniauth :facebook, "1004033273021033", "59e7ad6b440bda5182139b0c221fc780"
+  config.omniauth :facebook, "913659305412029", "900e9a44877d59f1da1d2b63938ea150", scope: 'email', info_fields: 'email,name,gender,picture'
   config.omniauth :google_oauth2,'144553234573-otnsd87u5lj2j8ga9lq1nhl5og2tgklu.apps.googleusercontent.com', 'e1cdVHWTmWjGtzozd1196SUD' , {}
   
 
