@@ -39,6 +39,12 @@ class HomeController < ApplicationController
 
     @activities = PublicActivity::Activity.order("created_at desc").where('owner_id in (?)' ,@f)
 
+    @friend_orders=Order.find_by_sql(["SELECT name, orders.order_from, order_for
+FROM orders, follows, users
+WHERE follows.followable_id =1
+AND users.id = follows.follower_id
+AND orders.user_id = follows.follower_id", @us]).last(1)
+
 
   end
   
