@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :groups
     resources :gusers
     resources :orderusers
-    root 'users#index'
+    #root 'users#index'
 
   #get 'friends' => 'users#index', as: 'friends'
 
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   #resources :items
   #resources :orders
   #root 'orders#index'
+  root 'home#index'
   resources :home
  
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504162630) do
+ActiveRecord::Schema.define(version: 20160505050213) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -95,7 +95,10 @@ ActiveRecord::Schema.define(version: 20160504162630) do
     t.string   "notifiable_type", limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "order_id",        limit: 4
   end
+
+  add_index "notifications", ["order_id"], name: "index_notifications_on_order_id", using: :btree
 
   create_table "order_users", force: :cascade do |t|
     t.integer  "order_id",   limit: 4
@@ -167,6 +170,7 @@ ActiveRecord::Schema.define(version: 20160504162630) do
   add_foreign_key "gusers", "users"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
+  add_foreign_key "notifications", "orders"
   add_foreign_key "order_users", "orders"
   add_foreign_key "order_users", "users"
   add_foreign_key "orders", "users"
