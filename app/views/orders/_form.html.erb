@@ -1,3 +1,20 @@
+<%= form_for @order, remote: true, :url => order_ajax_path do |f| %>
+  <label>you can write friend email</label></br>
+  <%= f.label :friends, "Email" %>:
+  <%= f.text_field :order_for, list: 'friends' %>
+  <%= f.submit :add %>
+
+  <datalist id="friends">
+    <% if @followables_array != nil  %>
+    <% if @followables_array.size > 0 %>
+      <% (@followables_array).each do |u| %>
+        <option value="<%= u %>"><%= u %></option>
+      <% end %>
+    <% end %>
+    <% end %>
+  </datalist><br/><br/>
+  <% end %>
+
 <%= form_for @order, url:orders_path, html:{ multipart: true } do |f| %>
 
   <% if @order.errors.any? %>
@@ -23,6 +40,8 @@
     <%= f.label :order_from %><br>
     <%= f.text_field :order_from %>
   </div>
+
+  
 
   <div class="field">
     <%# form_for @order, :html => { :multipart => true } do |f| %>

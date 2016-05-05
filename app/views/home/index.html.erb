@@ -1,9 +1,6 @@
 
 
-  <div class="col-sm-2 pull-right" style="direction: rtl;">
-    <img src="assets/fat.gif" class="gap-right" style="width: 200px; height: 200px;">
-  </div>
-
+  
 
 
 <div class="col-sm-5" >
@@ -31,24 +28,19 @@
       
 
 <div class="col-sm-5">
-    <h2 style="color: #ffffff;">Friends Activity</h2>
+          <h2>Friends Activity</h2>
+
+<% @activities.each do |activity| %>
+        <div class="post_wrapper">
+      <!-- name :<%= link_to activity.owner.name %> -->
+      <h3 class="title"><%=  activity.owner.name %>
+      has ordered from
+      <%= activity.trackable.restaurant%></h3>
+
+                  <p class="date"><%= time_ago_in_words(activity.created_at) %> ago</p>
 
 
-      <table class="table " >
-        <tbody>
-       	 
-      	 <% @friend_orders.each do |friend_orders| %>
-          	<tr class="" >
-        <td>
-        <%= friend_orders.name %>
-        <br>
-        <%= friend_orders.order_for %>
-        <br>
-        <%= friend_orders.order_from %>
-        </td>
-          	</tr>
-      	 <% end %>
-      </tbody>
-    </table>
+     </div>
+  <% end %>
 
-</div>
+    </div>

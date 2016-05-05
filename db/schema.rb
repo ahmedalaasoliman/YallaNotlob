@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504141959) do
+ActiveRecord::Schema.define(version: 20160505085801) do
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "trackable_id",   limit: 4
+    t.string   "trackable_type", limit: 255
+    t.integer  "owner_id",       limit: 4
+    t.string   "owner_type",     limit: 255
+    t.string   "key",            limit: 255
+    t.text     "parameters",     limit: 65535
+    t.integer  "recipient_id",   limit: 4
+    t.string   "recipient_type", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
@@ -71,43 +88,30 @@ ActiveRecord::Schema.define(version: 20160504141959) do
   add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "order_id",   limit: 4
-    t.string   "message",    limit: 255
-    t.integer  "user_id",    limit: 4
-    t.integer  "users_id",   limit: 4
-    t.integer  "orders_id",  limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "recipient_id",    limit: 4
+    t.integer  "actor_id",        limit: 4
+    t.datetime "read_at"
+    t.string   "action",          limit: 255
+    t.integer  "notifiable_id",   limit: 4
+    t.string   "notifiable_type", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
-
-  add_index "notifications", ["order_id"], name: "fk_rails_fd5a31cf2f", using: :btree
-  add_index "notifications", ["orders_id"], name: "index_notifications_on_orders_id", using: :btree
-  add_index "notifications", ["user_id"], name: "fk_rails_b080fb4855", using: :btree
-  add_index "notifications", ["users_id"], name: "index_notifications_on_users_id", using: :btree
-
-  create_table "order_users", force: :cascade do |t|
-    t.integer  "order_id",   limit: 4
-    t.integer  "user_id",    limit: 4
-    t.string   "userstatus", limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "order_users", ["order_id"], name: "index_order_users_on_order_id", using: :btree
-  add_index "order_users", ["user_id"], name: "index_order_users_on_user_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.string   "order_for",           limit: 255
     t.string   "order_from",          limit: 255
     t.string   "menu_image",          limit: 255
-    t.string   "status",              limit: 255
+    t.string   "status",              limit: 255, default: "waiting"
     t.integer  "user_id",             limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "invited",             limit: 255
+    t.string   "joined",              limit: 255
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
@@ -150,18 +154,13 @@ ActiveRecord::Schema.define(version: 20160504141959) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "friends", "users"
-
   add_foreign_key "friends", "users", column: "friend", name: "friends_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "groups", "users"
   add_foreign_key "gusers", "groups"
   add_foreign_key "gusers", "users"
   add_foreign_key "items", "orders", on_update: :cascade, on_delete: :cascade
   add_foreign_key "items", "users", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "orders", on_update: :cascade, on_delete: :cascade
-  add_foreign_key "notifications", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "orders", "users", on_update: :cascade, on_delete: :cascade
-
-
   add_foreign_key "orderusers", "orders"
   add_foreign_key "orderusers", "users"
 end

@@ -6,27 +6,37 @@
   <thead>
     <tr>
       <th>Order for</th>
-      <th>Order from</th>
-      <th>Menu image</th>
+      <th>Resturants</th>
+      <th>Invited</th>
+      <th>Joined</th>
       <th>Status</th>
-      <th>User id </th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
+    <% @allorders.each do |order| %>
       <tr>
         <td><%= order.order_for %></td>
         <td><%= order.order_from %></td>
         <td class="orders_list">
-        <%= image_tag order.avatar.url(:thumb) if order.avatar? %>
+        <%= order.invited %>
         </td>
+        <td><%= order.joined %></td>
         <td><%= order.status %></td>
-        <td><%= order.user_id %></td>
         <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td ><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if order.user_id == current_user.id %>
+          <% if order.status != "finished"%>
+          <td><%= link_to 'Finish', finishorder_path(order) %></td>
+          <% else %>
+          <td></td>
+          <% end %>
+          <td ><%= link_to 'Cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>
