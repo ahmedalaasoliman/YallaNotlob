@@ -17,9 +17,4 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap/modal
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> 0769b94709c4524de61c475bbce7bc81cac6bd94
