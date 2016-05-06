@@ -63,7 +63,8 @@
 
 $("#addgroup").on("click",function(){
 	var inp = $("#gname").val();
-	$.ajax({
+	if(inp!=""){
+		$.ajax({
 		url:'/groups',
 		type:'post',
 		data:{'gname':inp},
@@ -79,6 +80,9 @@ $("#addgroup").on("click",function(){
 			console.log(error);
 		}
 	});
+	}else{
+		alert("please, enter valid inputs");
+	}
 	
 });
 
