@@ -41,9 +41,9 @@ class HomeController < ApplicationController
 
     @friend_orders=Order.find_by_sql(["SELECT name, orders.order_from, order_for
 FROM orders, follows, users
-WHERE follows.followable_id =1
-AND users.id = follows.follower_id
-AND orders.user_id = follows.follower_id", @us]).last(1)
+WHERE follows.follower_id ="+@user_id.to_s+"
+AND users.id = follows.followable_id
+AND orders.user_id = follows.followable_id", @us])
 
 
   end
