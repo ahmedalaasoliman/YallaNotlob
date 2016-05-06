@@ -43,7 +43,7 @@ class HomeController < ApplicationController
 FROM orders, follows, users
 WHERE follows.followable_id =1
 AND users.id = follows.follower_id
-AND orders.user_id = follows.follower_id", @us]).last(1)
+AND orders.user_id = follows.follower_id", @us]).last(4)
 
 
   end
