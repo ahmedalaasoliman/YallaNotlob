@@ -1,6 +1,6 @@
 <h2>order details</h2>
 <div class="col-lg-8">
-<table class="table">
+<table class="table" style="color:white">
   <thead>
     <tr>
       <th>person</th>
@@ -20,7 +20,7 @@
     <td><%= item.amount %></td>
     <td><%= item.price %></td>
     <td><%= item.comment %></td>
-    <td><button onclick="removeItem(<%= item.id %>)">delete</button></td>
+    <td> <button class="btn btn-info" onclick="removeItem(<%= item.id %>)">delete</button></td>
     </tr>
    <% end %>
    </tbody>

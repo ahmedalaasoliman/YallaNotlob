@@ -8,7 +8,7 @@ class Notifications
 
       setInterval (=>
         @getNewNotifications()
-      ), 5000
+      ), 10000
 
   getNewNotifications: ->
     $.ajax(
@@ -30,7 +30,7 @@ class Notifications
   handleSuccess: (data) =>
     console.log(data)
     items = $.map data, (notification) ->
-      "<a class='dropdown-item' href='#{notification.orderId}'>#{notification.actor} #{notification.action} #{notification.notifiable.type}</a>"
+      "<a class='dropdown-item' href='/orders/#{notification.orderId}'>#{notification.actor} #{notification.action} #{notification.notifiable.type}</a>"
 
     $("[data-behavior='unread-count']").text(items.length)
     $("[data-behavior='notification-items']").html(items)

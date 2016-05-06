@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   def index
  
 	 @user_id = current_user.id
-	 @order = Order.where('user_id = ?' , @user_id)
+	 @order = Order.where('user_id = ?' , @user_id).last(5)
 
 	 #@friend=User.find_by_sql (["select name from users, friends where user_id = ? and users.id = friends.friend", @user_id])
      #@friend_orders=Order.find_by_sql(["select order from orders o , friends f , users u where f.user_id= ? and u.id = f.friend and f.friend = o.user_id" , @user_id])
@@ -39,20 +39,23 @@ class HomeController < ApplicationController
 
     @activities = PublicActivity::Activity.order("created_at desc").where('owner_id in (?)' ,@f)
 
-    @friend_orders=Order.find_by_sql(["SELECT name, orders.order_from, order_for
 
 
-WHERE follows.follower_id ="+@user_id.to_s+"
-AND users.id = follows.followable_id
-AND orders.user_id = follows.followable_id", @us]).last(4)
+  @friend_orders=Order.find_by_sql(["SELECT name, orders.order_from, order_for
+  FROM orders, follows, users
+ WHERE follows.follower_id ="+@user_id.to_s+"
+ AND users.id = follows.followable_id
+ AND orders.user_id = follows.followable_id", @us]).last(5)
+  
+  
+    end
 
 
-  end
   
 end
 
 
-# FROM orders, follows, users
-# WHERE follows.followable_id =1
-# AND users.id = follows.follower_id
-# AND orders.user_id = follows.follower_id", @us]).last(4)
+
+
+
+
