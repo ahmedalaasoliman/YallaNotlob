@@ -39,7 +39,7 @@
           <div class="modal-body">
             <% @invusers.each do |inv| %>
             <div class='row'>
-              <%= inv.user_id %>
+              <%= inv.person %>
               <button class='btn-danger' onclick="removeuser(<%= inv.user_id %>)">remove</button>
             </div>
             <% end %>
@@ -58,7 +58,7 @@
           <div class="modal-body">
             <% @jonusers.each do |jon| %>
             <div  class='row'>
-              <%= jon.user_id %>
+              <%= jon.person %>
                <button class='btn-danger' onclick="removeuser(<%= jon.user_id %>)">remove</button>
                </div>
             <% end %>
@@ -128,7 +128,8 @@ var addItem = function(){
   var price = $("#price").val();
   var comment = $("#comment").val();
   var ordid = <%= params[:id]%> ;
-  $.ajax({
+  if(item!=""&&amount!=""&price!=""){
+     $.ajax({
     url:'/items',
     method:'post',
     data:{'item':item,'amount':amount,'price':price,'comment':comment,'ordid':ordid},
@@ -145,5 +146,9 @@ var addItem = function(){
       console.log(error);
     }
   });
+  }
+ else{
+  alert("please, enter valid inputs");
+ }
 }
 </script>
