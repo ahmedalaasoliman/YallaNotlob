@@ -128,6 +128,17 @@ ActiveRecord::Schema.define(version: 20160505085801) do
 
   add_index "notifications", ["order_id"], name: "index_notifications_on_order_id", using: :btree
 
+  create_table "order_users", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "userstatus", limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "order_users", ["order_id"], name: "index_order_users_on_order_id", using: :btree
+  add_index "order_users", ["user_id"], name: "index_order_users_on_user_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.string   "order_for",           limit: 255
     t.string   "order_from",          limit: 255
@@ -191,6 +202,11 @@ ActiveRecord::Schema.define(version: 20160505085801) do
   add_foreign_key "items", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "orders"
+<<<<<<< HEAD
+=======
+  add_foreign_key "order_users", "orders"
+  add_foreign_key "order_users", "users"
+>>>>>>> b3af871b1b6103b971d38bd44a3e340d8d0f0d3c
   add_foreign_key "orders", "users"
   add_foreign_key "orderusers", "orders"
   add_foreign_key "orderusers", "users"

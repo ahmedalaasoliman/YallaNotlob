@@ -16,6 +16,7 @@ default: &default
   username: root
   password: iti
 
+
   socket: /var/run/mysqld/mysqld.sock
 
 development:
