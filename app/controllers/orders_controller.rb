@@ -103,6 +103,12 @@ class OrdersController < ApplicationController
     @order['status'] = "waiting" 
     respond_to do |format|
       if @order.save
+
+     ordus = Orderuser.new
+        ordus.user_id = current_user.id
+        ordus.order_id = @order.id
+        ordus.status = 'joined'
+        ordus.save    
         
 
          # (@users.uniq - [current_user]).each do |user|
